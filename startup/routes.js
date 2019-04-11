@@ -1,0 +1,25 @@
+require('express-async-error');
+const genres = require('../routes/genres');
+const customers = require('../routes/customers');
+const movies=require('../routes/movies')
+const users=require('../routes/users');
+const auth=require('../routes/auth');
+const Joi = require('joi');
+const config=require('config');
+const error=require('../middleware/error');
+const rentals=require('../routes/rental')
+const express = require('express');
+
+module.exports =function(app){
+
+    app.use(express.json());
+    app.use('/auth',auth);
+    app.use('/api/users',users);
+    app.use('/api/genres', genres);
+    app.use('/api/customers', customers);
+    app.use('/api/movies',movies);
+
+    app.use('/api/rentals',rentals);
+
+    app.use(error);
+}
